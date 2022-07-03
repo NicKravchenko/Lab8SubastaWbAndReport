@@ -1,0 +1,62 @@
+﻿@page
+@model Subasta.Pages.Subastas.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item.ItemNombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.ItemNombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item.PrecioInicial)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.PrecioInicial)
+        </dd>
+    </dl>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Puja[0].NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Puja[0].PujaMonto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Puja[0].FechaPuesto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Puja) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PujaMonto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPuesto)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-page="./Index">Back to List</a> |
+    <a asp-page="/Pujas/Create" asp-route-id="@Model.Item?.ID">Puja Nueva</a>     
+</div>

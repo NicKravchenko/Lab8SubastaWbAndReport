@@ -1,0 +1,62 @@
+﻿@page
+@model Subasta.Pages.Pujas.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Item</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger">
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Objeto: @Model.Item.ItemNombre</label>
+            </div>
+            @if(Model.MaxPuja != null){
+            <div class="form-group">
+                <label class="control-label">El monto mas alto: @Model.MaxPuja.PujaMonto </label>
+            </div>
+            }
+            else
+            {
+                <div class="form-group">
+                <label class="control-label">El monto mas alto: @Model.Item.PrecioInicial</label>
+            </div>
+            }
+            <div class="form-group">
+                <label asp-for="PujaVM.NombreCompleto" class="control-label"></label>
+                <input asp-for="PujaVM.NombreCompleto" class="form-control" />
+                <span asp-validation-for="PujaVM.NombreCompleto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PujaVM.Cedula" class="control-label"></label>
+                <input asp-for="PujaVM.Cedula" class="form-control" />
+                <span asp-validation-for="PujaVM.Cedula" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PujaVM.PujaMonto" class="control-label"></label>
+                <input asp-for="PujaVM.PujaMonto" class="form-control" />
+                <span asp-validation-for="PujaVM.PujaMonto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Items/Details" asp-route-id="@Model.Item?.ID">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

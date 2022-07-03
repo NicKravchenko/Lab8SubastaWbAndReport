@@ -1,0 +1,46 @@
+﻿@page
+@model Subasta.Pages.Subastas.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item[0].ItemNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item[0].PrecioInicial)
+            </th>
+            <th>
+                La puja mas alta
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Item) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioInicial)
+            </td>
+            <td>
+                @Model.GetPujaAsync(item)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
